@@ -89,7 +89,7 @@ largura=st.sidebar.number_input(label="Largura da parede",min_value=1,value=238)
 altura=st.sidebar.number_input(label="Altura da parede",min_value=1,value=148)
 
 radius=st.sidebar.number_input(label='Raio do pentágono',min_value=0,value=30,step=1)
-angulo=st.sidebar.slider(label="Ângulo do pentágono",min_value=-18.0,max_value=18.0,step=0.1)
+angulo=st.sidebar.slider(label="Ângulo do pentágono",min_value=-36.0,max_value=36.0,step=0.5)
 x_center=st.sidebar.slider(label="Centro do pentágono (eixo x)",min_value=0,max_value=largura,value=largura//2)
 y_center=st.sidebar.slider(label="Centro do pentágono (eixo y)",min_value=0,max_value=altura,value=altura//2)
 
@@ -103,17 +103,15 @@ for col in range(len(colors)):
     if col==0:
         res_col[col]=colors[col].color_picker(label="Cor de fundo",value='#FFFFFF')
     else:
-        res_col[col]=colors[col].color_picker(label=f"Cor nível {col}",value=default[col-1])
+        res_col[col]=colors[col].color_picker(label=f"Cor nível {col}",value=default[col])
 
 L=hd/phi*radius
 B_R=L/3/np.sin(np.pi/10)*np.sin(7*np.pi/10)
 s_R=L/3/np.sin(np.pi/10)*np.sin(2*np.pi/10)
 
-print(colors[0])
-
 p=pentagon((x_center,y_center),radius,angulo)
 
-fig, axes = plt.subplots(figsize=(13,8))
+fig, axes = plt.subplots(figsize=(largura//10,altura//10))
 axes.set_xlim(0,largura)
 axes.set_ylim(0,altura)
 axes.set_facecolor(res_col[0])
